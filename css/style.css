@@ -1,0 +1,13 @@
+.game-board-container {
+  height: 800px;
+  width: 800px;
+  background-color: red;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.box {
+  padding: 20px;
+  border: 1px solid black;
+
+}
