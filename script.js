@@ -35,6 +35,7 @@ const displayController = (() => {
   boardContainer.addEventListener("click", markBoard)
 
   function markBoard (e) {
+    if (e.target.textContent) return;
     gameBoard.gameBoard[e.target.classList[0]] = gameBoard.getCurrent().marker;
     renderBoard();
     gameBoard.players.reverse();
