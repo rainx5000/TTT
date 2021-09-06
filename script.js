@@ -1,8 +1,28 @@
-const gameBoard  = (() => {
-  const gameBoard = ['x','x','','x','o','x','o','o','o'];
+
+const Player = (mark) => {
+  const marker = mark;
 
   return {
-    gameBoard
+    marker
+  }
+}
+
+const gameBoard  = (() => {
+  const gameBoard = ['','','','','','','','',''];
+  const player1 = Player("x");
+  const player2 = Player("o");
+  const players = [player1, player2];
+  const getCurrent = () => players[0]
+
+
+
+
+
+
+  return {
+    gameBoard,
+    players,
+    getCurrent
   }
 })();
 
@@ -12,18 +32,18 @@ const displayController = (() => {
     gameBoard.gameBoard.forEach((box, index) => boardContainer.children[index].textContent = box)
   }
 
+  boardContainer.addEventListener("click", markBoard)
+
+  function markBoard (e) {
+    gameBoard.gameBoard[e.target.classList[0]] = gameBoard.getCurrent().marker;
+    renderBoard();
+    gameBoard.players.reverse();
+  }
+
 
   return {
-
+    boardContainer
   }
 
 })()
 
-
-const Player = (marker) => {
-  const playerMarker = marker;
-
-  return {
-
-  }
-}
