@@ -19,3 +19,23 @@ OPTIONAL - Create an AI option, Player vs AI
 RANDOM PLANNING:
 
 gameboard will be an object
+
+winning combinations:
+
+012
+345
+678
+
+036
+147
+258
+
+048
+642
+
+const WinningCombinations = ['012', '345', '678', '036', '147', '258', '048', '642'];
+
+
+we would filter the winningCombo,
+
+check if every child has the same marker, return true announcing the winner
