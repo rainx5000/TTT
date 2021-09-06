@@ -1,17 +1,27 @@
 const gameBoard  = (() => {
-  const _gameBoard = [
-    ['x','o','x'],
-    ['x','x','o'],
-    ['o','x','o']
-  ]
+  const gameBoard = ['x','x','','x','o','x','o','o','o'];
 
   return {
-    
+    gameBoard
   }
 })();
 
+const displayController = (() => {
+  const boardContainer = document.querySelector(".game-board-container");
+  const renderBoard = function () {
+    gameBoard.gameBoard.forEach((box, index) => boardContainer.children[index].textContent = box)
+  }
 
-const Player = () => {
+
+  return {
+
+  }
+
+})()
+
+
+const Player = (marker) => {
+  const playerMarker = marker;
 
   return {
 
