@@ -29,8 +29,9 @@ const gameBoard  = (() => {
       const winner = document.querySelector(`.${getCurrent().marker}`);
       const score = getCurrent().score += 1;
       winner.textContent =  score;
+      announceWinner();
     } else {
-      console.log("TIE GAME");
+      announceWinner("tie");
     }
     return true;
   }
@@ -41,6 +42,14 @@ const gameBoard  = (() => {
   const restartScores = () => {
     players.forEach(player => player.score = 0)
     Array.from(scores.children).forEach(score => score.textContent = 0)
+  }
+
+  const announceWinner = (result) => {
+    if (result === "tie") {
+      document.querySelector(".announcement").textContent = "Tie!";
+    } else {
+      document.querySelector(".announcement").textContent = `${getCurrent().marker} has won!`
+    }
   }
 
 
@@ -108,16 +117,13 @@ const displayController = (() => {
     gameBoard.gameBoard.forEach((el, index) => {
       gameBoard.gameBoard[index] = '';
     });
-    gameBoard.boardContainer.classList.toggle("disabled");
+    gameBoard.boardContainer.classList.remove("disabled");
     renderBoard();
   }
   function restartGame () {
     resetGame();
     gameBoard.restartScores();
     form.classList.toggle("hidden");
-
   }
-
-
 })()
 
