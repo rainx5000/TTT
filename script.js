@@ -76,11 +76,7 @@ const displayController = (() => {
     if (Array.from(boxes).every(box => box.textContent) && !winner) return gameBoard.tie();
     if (winner) return gameBoard.winner();
   }
-
-
-  return {
-    boardContainer
-  }
+  
 
 })()
 

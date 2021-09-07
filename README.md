@@ -39,3 +39,15 @@ const WinningCombinations = ['012', '345', '678', '036', '147', '258', '048', '6
 we would filter the winningCombo,
 
 check if every child has the same marker, return true announcing the winner
+
+
+6 - Add an interface to allow players to put their names. with a button to restart/start the game and some display of whoever wins
+
+  1 - create a Form with:
+    1 - player1 input
+    2 - player2 input
+    3 - Play button
+  2 - create a restart game button and reset game
+    Reset will clear the board and start a new game, restart will bring up the form again for new players
+  3 - We will have a score counter if we were to only reset the game, 
+  4 - 
