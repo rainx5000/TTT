@@ -86,11 +86,12 @@ const displayController = (() => {
 
   form.addEventListener("submit", formSubmitHandle);
   resetBtn.addEventListener("click", resetGame);
-  // restartBtn.addEventListener("click", restartGame);
+  restartBtn.addEventListener("click", restartGame);
 
   function formSubmitHandle (e) {
     player1Display.textContent = player1Input.value;
     player2Display.textContent = player2Input.value;
+    form.classList.toggle("hidden");
   }
 
   function resetGame () {
@@ -98,6 +99,11 @@ const displayController = (() => {
       gameBoard.gameBoard[index] = '';
     });
     renderBoard();
+  }
+  function restartGame () {
+    resetGame();
+    form.classList.toggle("hidden");
+
   }
 
 })()
