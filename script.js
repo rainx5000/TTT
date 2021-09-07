@@ -49,6 +49,13 @@ const gameBoard  = (() => {
 
 const displayController = (() => {
   const boardContainer = gameBoard.boardContainer;
+  const player1Input = document.querySelector(".player1-input");
+  const player1Display = document.querySelector(".player1-display");
+  const player2Input = document.querySelector(".player2-input");
+  const player2Display = document.querySelector(".player2-display");
+  const form = document.querySelector(".menu");
+  const resetBtn = document.querySelector(".reset");
+  const restartBtn = document.querySelector(".restart");
 
 
   boardContainer.addEventListener("click", markBoard)
@@ -76,7 +83,22 @@ const displayController = (() => {
     if (Array.from(boxes).every(box => box.textContent) && !winner) return gameBoard.tie();
     if (winner) return gameBoard.winner();
   }
-  
+
+  form.addEventListener("submit", formSubmitHandle);
+  resetBtn.addEventListener("click", resetGame);
+  // restartBtn.addEventListener("click", restartGame);
+
+  function formSubmitHandle (e) {
+    player1Display.textContent = player1Input.value;
+    player2Display.textContent = player2Input.value;
+  }
+
+  function resetGame () {
+    gameBoard.gameBoard.forEach((el, index) => {
+      gameBoard.gameBoard[index] = '';
+    });
+    renderBoard();
+  }
 
 })()
 
