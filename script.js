@@ -1,14 +1,20 @@
 
 const Player = (mark) => {
-  const marker = mark;
+  this.marker = mark;
+  this.score = 0;
+
+  const getScore = () => score;
 
   return {
-    marker
+    marker,
+    score,
+    getScore
   }
 }
 
 const gameBoard  = (() => {
   const boardContainer = document.querySelector(".game-board-container");
+  const scores = document.querySelector(".scores");
   const gameBoard = ['','','','','','','','',''];
   const winningCombinations = ['012', '345', '678', '036', '147', '258', '048', '642'];
   const player1 = Player("x");
@@ -17,22 +23,21 @@ const gameBoard  = (() => {
   const getCurrent = () => players[0];
 
 
-  const tie = () => {
-    boardContainer.style.pointerEvents = "none";
-    console.log("TIE GAME");
-    return true;
-  }
-  const winner = () => {
-    console.log(`${getCurrent().marker} has won!`)
+  const winner = (aWinner) => {
+    if (aWinner) {
+      console.log(`${getCurrent().marker} has won!`)
+      const winner = document.querySelector(`.${getCurrent().marker}`);
+      const score = getCurrent().score += 1;
+      winner.textContent =  score;
+    } else {
+      console.log("TIE GAME");
+    }
     return true;
   }
   const endGame = () => {
     console.log('ended')
-    boardContainer.style.pointerEvents = "none";
+    boardContainer.classList.toggle("disabled");
   }
-
-
-
 
 
   return {
@@ -42,8 +47,8 @@ const gameBoard  = (() => {
     winningCombinations,
     boardContainer,
     winner,
-    tie,
-    endGame
+    endGame,
+    scores
   }
 })();
 
@@ -69,7 +74,7 @@ const displayController = (() => {
   }
 
   const renderBoard = function () {
-    gameBoard.gameBoard.forEach((box, index) => boardContainer.children[index].textContent = box)
+    gameBoard.gameBoard.forEach((box, index) => boardContainer.children[index].textContent = box);
   }
 
   function checkWinner() {
@@ -80,8 +85,8 @@ const displayController = (() => {
         return boxes[curr].textContent === gameBoard.getCurrent().marker;
       })
     })
-    if (Array.from(boxes).every(box => box.textContent) && !winner) return gameBoard.tie();
-    if (winner) return gameBoard.winner();
+    if (Array.from(boxes).every(box => box.textContent) && !winner) return gameBoard.winner(false);
+    if (winner) return gameBoard.winner(true);
   }
 
   form.addEventListener("submit", formSubmitHandle);
@@ -98,6 +103,7 @@ const displayController = (() => {
     gameBoard.gameBoard.forEach((el, index) => {
       gameBoard.gameBoard[index] = '';
     });
+    gameBoard.boardContainer.classList.toggle("disabled");
     renderBoard();
   }
   function restartGame () {
@@ -105,6 +111,7 @@ const displayController = (() => {
     form.classList.toggle("hidden");
 
   }
+
 
 })()
 
