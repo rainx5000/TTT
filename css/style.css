@@ -1,20 +1,7 @@
 body,
 html {
   margin: 0;
-}
-
-.game-board-container {
-  height: 700px;
-  width: 700px;
-  background-color: red;
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-template-columns: 1fr 1fr 1fr;
-}
-.box {
-  padding: 20px;
-  border: 1px solid black;
-  font-size: 70px;
+  text-align: center;
 }
 
 .menu {
@@ -22,16 +9,42 @@ html {
   height: 100vh;
   box-sizing: border-box;
   top: 0; right: 0; left: 0; bottom: 0;
-  background-color: rgba(0, 0, 0, 0.322);
+  background-color: rgb(202, 240, 167);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-bottom: 30vh;
 }
 
 .menu >* {
-  width: 100px;
+  width: 10vw;
+  height: fit-content;
+  margin-bottom: 20px;
 }
+.menu button {
+  width: 5vw;
+}
+.menu h2 {
+  text-align: center;
+}
+
+.game-board-container {
+  height: 600px;
+  width: 600px;
+  background-color: red;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: auto;
+}
+.box {
+  padding: 20px;
+  border: 1px solid black;
+  font-size: 70px;
+}
+
+
 
 .hidden {
   display: none;

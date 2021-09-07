@@ -1,4 +1,3 @@
-
 const Player = (mark) => {
   this.marker = mark;
   this.score = 0;
@@ -17,26 +16,24 @@ const gameBoard  = (() => {
   const scores = document.querySelector(".scores");
   const gameBoard = ['','','','','','','','',''];
   const winningCombinations = ['012', '345', '678', '036', '147', '258', '048', '642'];
-  const player1 = Player("x");
-  const player2 = Player("o");
-  const players = [player1, player2];
+  const _player1 = Player("x");
+  const _player2 = Player("o");
+  const players = [_player1, _player2];
   const getCurrent = () => players[0];
 
 
   const winner = (aWinner) => {
     if (aWinner) {
-      console.log(`${getCurrent().marker} has won!`)
       const winner = document.querySelector(`.${getCurrent().marker}`);
       const score = getCurrent().score += 1;
       winner.textContent =  score;
-      announceWinner();
+      _announceWinner();
     } else {
-      announceWinner("tie");
+      _announceWinner("tie");
     }
     return true;
   }
   const endGame = () => {
-    console.log('ended')
     boardContainer.classList.toggle("disabled");
   }
   const restartScores = () => {
@@ -44,7 +41,7 @@ const gameBoard  = (() => {
     Array.from(scores.children).forEach(score => score.textContent = 0)
   }
 
-  const announceWinner = (result) => {
+  const _announceWinner = (result) => {
     if (result === "tie") {
       document.querySelector(".announcement").textContent = "Tie!";
     } else {
@@ -118,6 +115,7 @@ const displayController = (() => {
       gameBoard.gameBoard[index] = '';
     });
     gameBoard.boardContainer.classList.remove("disabled");
+    document.querySelector(".announcement").textContent = '';
     renderBoard();
   }
   function restartGame () {
