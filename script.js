@@ -38,6 +38,10 @@ const gameBoard  = (() => {
     console.log('ended')
     boardContainer.classList.toggle("disabled");
   }
+  const restartScores = () => {
+    players.forEach(player => player.score = 0)
+    Array.from(scores.children).forEach(score => score.textContent = 0)
+  }
 
 
   return {
@@ -48,7 +52,8 @@ const gameBoard  = (() => {
     boardContainer,
     winner,
     endGame,
-    scores
+    scores,
+    restartScores
   }
 })();
 
@@ -108,6 +113,7 @@ const displayController = (() => {
   }
   function restartGame () {
     resetGame();
+    gameBoard.restartScores();
     form.classList.toggle("hidden");
 
   }
