@@ -19,7 +19,6 @@ const gameBoard  = (() => {
 
 
 
-
   return {
     gameBoard,
     players,
@@ -55,11 +54,23 @@ const displayController = (() => {
         return boxes[curr].textContent === gameBoard.getCurrent().marker;
       })
     })
-    return winner;
+
+    if (Array.from(boxes).every(box => box.textContent) && !winner) return tie();
+    if (winner) return won();
   }
 
   function endGame () {
+    console.log('ended')
     boardContainer.style.pointerEvents = "none";
+  }
+  function tie () {
+    boardContainer.style.pointerEvents = "none";
+    console.log("TIE GAME");
+    return true;
+  }
+  function won() {
+    console.log(`${gameBoard.getCurrent().marker} has won!`)
+    return true;
   }
   return {
     boardContainer
