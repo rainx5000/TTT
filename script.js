@@ -45,7 +45,7 @@ const gameBoard  = (() => {
     if (result === "tie") {
       document.querySelector(".announcement").textContent = "Tie!";
     } else {
-      document.querySelector(".announcement").textContent = `${getCurrent().marker} has won!`
+      document.querySelector(".announcement").textContent = `${getCurrent().marker.toUpperCase()} has won!`
     }
   }
 
@@ -105,8 +105,8 @@ const displayController = (() => {
   restartBtn.addEventListener("click", restartGame);
 
   function formSubmitHandle (e) {
-    player1Display.textContent = player1Input.value;
-    player2Display.textContent = player2Input.value;
+    player1Display.textContent = `${player1Input.value} [X]`;
+    player2Display.textContent = `${player2Input.value} [O]`;
     form.classList.toggle("hidden");
   }
 
